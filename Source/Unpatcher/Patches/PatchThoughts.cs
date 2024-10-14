@@ -30,7 +30,7 @@ namespace Unpatcher.Patches
 		}
 
 		public override string SettingsKey => "Unpatch Thoughts";
-		public override string TooltipKey => "Disable patches used to allow HAR races to block thoughts.";
+		public override string TooltipKey => "Disable patches used to allow HAR races to block thoughts. (Impact scales with number of pawns)";
 
 		protected override void Patch(Harmony instance)
 		{

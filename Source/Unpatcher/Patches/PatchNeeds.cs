@@ -27,7 +27,7 @@ namespace Unpatcher.Patches
 		}
 
 		public override string SettingsKey => "Unpatch Needs";
-		public override string TooltipKey => "Disable patches used to allow body addons to respond to Needs.";
+		public override string TooltipKey => "Disable patches used to allow body addons to respond to Needs. (Impact scales with number of pawns)";
 
 		protected override void Patch(Harmony instance)
 		{

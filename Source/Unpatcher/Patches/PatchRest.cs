@@ -24,7 +24,7 @@ namespace Unpatcher.Patches
 		}
 
 		public override string SettingsKey => "Unpatch Rest";
-		public override string TooltipKey => "Disable patches used to allow HAR races to require special beds.";
+		public override string TooltipKey => "Disable patches used to allow HAR races to require special beds. (Impact scales with number of sleeping pawns.)";
 
 		protected override void Patch(Harmony instance)
 		{
