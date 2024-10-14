@@ -8,5 +8,15 @@
         <li>1.5</li>
     </supportedVersions>
     <description>Unpatch slow harmony patches.</description>
-
+    <loadAfter>
+        <li>erdelf.HumanoidAlienRaces</li>
+    </loadAfter>
+    <modDependencies>
+      <li>
+        <packageId>erdelf.HumanoidAlienRaces</packageId>
+        <displayName>Humanoid Alien Races</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/839005762</steamWorkshopUrl>
+        <downloadUrl>https://github.com/erdelf/AlienRaces/releases/latest</downloadUrl>
+      </li>
+    </modDependencies>
 </ModMetaData>
