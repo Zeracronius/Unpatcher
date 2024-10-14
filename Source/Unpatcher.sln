@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unpatcher", "Unpatcher\Unpatcher.csproj", "{851E87CD-C05D-40B7-A2E7-FC0EBC148775}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		1.4|Any CPU = 1.4|Any CPU
+		1.5|Any CPU = 1.5|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Hotswap|Any CPU = Hotswap|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.1.4|Any CPU.ActiveCfg = 1.4|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.1.4|Any CPU.Build.0 = 1.4|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.1.5|Any CPU.ActiveCfg = 1.5|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.1.5|Any CPU.Build.0 = 1.5|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.Hotswap|Any CPU.ActiveCfg = Hotswap|Any CPU
+		{851E87CD-C05D-40B7-A2E7-FC0EBC148775}.Hotswap|Any CPU.Build.0 = Hotswap|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3119FC4B-8974-4A12-B61B-F139286D415C}
+	EndGlobalSection
+EndGlobal
