@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Unpatcher</name>
+    <author>Zeracronius</author>
+    <packageId>Zeracronius.Unpatcher</packageId>
+    <url></url>
+    <supportedVersions>
+        <li>1.5</li>
+    </supportedVersions>
+    <description>Unpatch slow harmony patches.</description>
+
+</ModMetaData>

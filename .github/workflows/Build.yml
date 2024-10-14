@@ -1,0 +1,88 @@
+name: 'Compile'
+run-name: ${{ github.ref_name }}
+on: workflow_dispatch
+
+jobs:
+  Compile:
+    runs-on: windows-latest
+
+    outputs:
+      ReleaseName: ${{ steps.generate_name.outputs.ReleaseName }}
+
+    env:
+      Solution_Name: "Source/Unpatcher.sln"
+      Name: Unpatcher
+      Versions: "1.5"
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+      with:
+        fetch-depth: 0
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@main
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@main
+     
+    # - name: Restore NuGet Packages
+    #   run: nuget restore $env:Solution_Name
+      
+    - name: Build
+      run: | 
+        "${{ env.Versions }}".Split(";") | ForEach {
+          msbuild $env:Solution_Name -t:restore,build /p:Configuration=$_
+        }
+
+    # Remove unnecesary directories
+    - name: Cleanup
+      run: | 
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Source"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.md"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
+
+    - name: Generate artifact name
+      id: generate_name
+      run: |
+        $branch = ""
+        if ("${{ env.Branch }}" -ne "refs/heads/master") {
+            $branch = $env:Branch.replace("refs/heads/", "") + "-"
+        }
+        $name = "$env:Name-$($branch)$(get-date -f yyyyMMdd)"
+
+        echo "ReleaseName=$name" >> $env:GITHUB_OUTPUT
+        echo ArtifactName=$name >> $env:GITHUB_ENV
+      env:
+        Branch: "${{ github.ref }}"
+
+    - name: Upload build artifacts 
+      uses: actions/upload-artifact@main
+      env:
+        Branch: "${{ github.ref }}"
+      with:
+        name: ${{ env.ArtifactName }}
+        path: ${{ github.workspace }}/**/*
+
+  Release:
+      if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+      needs: [Compile]
+      runs-on: ubuntu-24.04
+      steps:
+        - name: Checkout
+          uses: actions/checkout@main
+
+        - name: Download Artifact
+          id: download-artifact
+          uses: actions/download-artifact@v4
+          with:
+            path: artifacts
+
+        - name: 'Create Release'
+          shell: bash
+          run: |
+            cd artifacts
+            zip -r ${{ needs.Compile.outputs.ReleaseName }}.zip ${{ needs.Compile.outputs.ReleaseName }}
+            gh release create --latest --generate-notes ${{ needs.Compile.outputs.ReleaseName }} '${{ needs.Compile.outputs.ReleaseName }}.zip'
+          env:
+            GH_TOKEN: ${{ github.token }}
